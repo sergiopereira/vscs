@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSCheatSheets.Core.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSCheatSheets.Web.Tests", "VSCheatSheets.Web.Tests\VSCheatSheets.Web.Tests.csproj", "{1FB2ED61-7899-4EA2-BD85-803192999578}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "db", "db", "{BC2B7184-7CC1-4389-A48C-F846DCCA648F}"
+	ProjectSection(SolutionItems) = preProject
+		db\create_db.sql = db\create_db.sql
+		db\drop_db.sql = db\drop_db.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -37,11 +37,21 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.1002\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.2.0.1002\lib\Net35\NHibernate.dll</HintPath>
+    <Reference Include="Inflector.Net">
+      <HintPath>..\lib\Inflector.Net\Inflector.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.2.0.1002, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.3.1.0.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\packages\NHibernate.Castle.3.1.0.4000\lib\Net35\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\packages\SQLitex64.1.0.66\lib\64\System.Data.SQLite.DLL</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,10 +59,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappings\Conventions\TableNamingConvention.cs" />
+    <Compile Include="Mappings\EntityMapping.cs" />
+    <Compile Include="Mappings\UserMapping.cs" />
+    <Compile Include="NHibernateAuditSaveListener.cs" />
+    <Compile Include="NHibernateConfigurator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VSCheatSheets.core\VSCheatSheets.Core.csproj">
+      <Project>{3CE8015C-CD2A-49B9-8028-2C7DFEE53E24}</Project>
+      <Name>VSCheatSheets.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

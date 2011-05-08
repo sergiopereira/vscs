@@ -1,6 +1,8 @@
 obj
 bin
 packages
+lib
+VSCheatSheets.5.1.ReSharper.user
 _ReSharper.*
 *.csproj.user
 *.resharper.user
