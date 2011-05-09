@@ -23,6 +23,6 @@ namespace VSCheatSheets.Model {
 
 		public virtual ISet<Sheet> Sheets { get; set; }
 
-		public virtual ISet<Sheet> FavoriteSheets { get; set; }
+		//public virtual ISet<Sheet> FavoriteSheets { get; set; }
 	}
 }

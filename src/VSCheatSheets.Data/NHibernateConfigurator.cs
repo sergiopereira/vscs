@@ -1,3 +1,5 @@
+using System;
+using FluentNHibernate;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -14,19 +16,19 @@ namespace VSCheatSheets.Data {
 		public static Configuration GetConfiguration() {
 			FluentConfiguration fluentConfig = Fluently.Configure()
 				.Database(
-					SQLiteConfiguration.Standard
-						.Dialect<SQLiteDialect>()
+					MsSqlConfiguration.MsSql2008.Dialect<MsSql2008Dialect>()
+					//SQLiteConfiguration.Standard.Dialect<SQLiteDialect>()
 						.ConnectionString(x => x.FromConnectionStringWithKey("CheatSheets"))
 				)
 				.ProxyFactoryFactory<ProxyFactoryFactory>()
 				.Mappings(m => m.AutoMappings.Add(
 				          	AutoMap
 				          		.AssemblyOf<Entity>().Where(type => !type.IsAbstract && typeof(Entity).IsAssignableFrom(type))
-				          		.Conventions.AddFromAssemblyOf<TableNamingConvention>()
+				          		.Conventions.AddFromAssemblyOf<NamingConvention>()
 				          		.Conventions.Add(
 				          			PrimaryKey.Name.Is(x => "ID"),
 				          			DefaultLazy.Always(),
-				          			ForeignKey.EndsWith("ID")
+				          			ForeignKey.Format(FormatFkName) //naming for FK  columns							
 				          		)
 				          	))
 				.ExposeConfiguration(config => config.Properties.Add("use_proxy_validator", "false"));
@@ -40,6 +42,18 @@ namespace VSCheatSheets.Data {
 			};
 
 			return cfg;
+		}
+
+		private static string FormatFkName(Member member, Type type) {
+			if (member == null) {
+				return type.Name + "ID";
+			}
+
+			if(member.Name.EndsWith(type.Name, StringComparison.OrdinalIgnoreCase)){
+				return member.Name + "ID";
+			}
+
+			return member.Name + type.Name + "ID";
 		}
 	}
 }

@@ -4,6 +4,7 @@ using FluentNHibernate.Mapping;
 using VSCheatSheets.Model;
 
 namespace VSCheatSheets.Data.Mappings {
+	
 	public abstract class EntityMapping<T> : ClassMap<T> where T : Entity {
 
 

@@ -59,9 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mappings\Conventions\TableNamingConvention.cs" />
+    <Compile Include="Mappings\Conventions\NamingConvention.cs" />
     <Compile Include="Mappings\EntityMapping.cs" />
-    <Compile Include="Mappings\UserMapping.cs" />
     <Compile Include="NHibernateAuditSaveListener.cs" />
     <Compile Include="NHibernateConfigurator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

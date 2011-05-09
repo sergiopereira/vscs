@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "db", "db", "{BC2B7184-7CC1-
 	ProjectSection(SolutionItems) = preProject
 		db\create_db.sql = db\create_db.sql
 		db\drop_db.sql = db\drop_db.sql
+		db\seed.sql = db\seed.sql
 	EndProjectSection
 EndProject
 Global
