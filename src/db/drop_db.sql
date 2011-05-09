@@ -1,10 +1,10 @@
 /*
- * Created at: 2011-05-09 02:33 AM UTC
+ * Created at: 2011-05-09 02:50 AM UTC
  * Machine: SERGIO-RED
  */
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_Sheet_Author]') AND parent_object_id = OBJECT_ID('Sheets'))
-alter table Sheets  drop constraint FK_Sheet_Author
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_Sheet_User]') AND parent_object_id = OBJECT_ID('Sheets'))
+alter table Sheets  drop constraint FK_Sheet_User
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_Sheet_CreatedBy]') AND parent_object_id = OBJECT_ID('Sheets'))
@@ -13,10 +13,6 @@ alter table Sheets  drop constraint FK_Sheet_CreatedBy
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_Sheet_UpdatedBy]') AND parent_object_id = OBJECT_ID('Sheets'))
 alter table Sheets  drop constraint FK_Sheet_UpdatedBy
-
-
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK69E598CE901178E1]') AND parent_object_id = OBJECT_ID('Sheets'))
-alter table Sheets  drop constraint FK69E598CE901178E1
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_SheetRating_User]') AND parent_object_id = OBJECT_ID('SheetRatings'))

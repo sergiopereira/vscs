@@ -23,11 +23,6 @@ namespace VSCheatSheets.Data.Mappings {
 
 		public virtual bool Audited { get { return true; } }
 
-		//protected virtual void MapIdentity()
-		//{
-		//    Id(x => x.Id).GeneratedBy.Identity().Column(EntityType.Name + "ID");
-		//}
-
 		protected abstract void MapProperties();
 
 		protected void MapStandardAuditingProperties()

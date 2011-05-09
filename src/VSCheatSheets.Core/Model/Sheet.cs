@@ -7,7 +7,7 @@ namespace VSCheatSheets.Model {
 		public virtual bool Private { get; set; }
 		public virtual string ContentMarkdown { get; set; }
 		public virtual string Permalink { get; set; }
-		public virtual User Author { get; set; }
+		public virtual User User { get; set; }
 
 		/// <summary>
 		/// Average voted rating. From 0 to 10 (even if we show 0 to 5 stars)
