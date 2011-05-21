@@ -1,9 +1,19 @@
+#region Copyright notice
+// Copyright (c) 2011, Sergio Pereira, sergiopereira.com
+// 
+// The author doesn't speak legalese and doesn't want to even hear about it.
+// Anyone is free to use this code as they wish as long as they assume total responsibility of such use and any damages caused by it.
+// The author doesn't even care if you steal this code and never give proper attribution. 
+// 
+// THIS CODE WANTS TO BE FREE
+#endregion
 using System;
 using System.IO;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
+using Environment = System.Environment;
 
 namespace VSCheatSheets.Data.Tests {
 	public class NHibernateConfiguratorTests {
@@ -44,7 +54,7 @@ namespace VSCheatSheets.Data.Tests {
 		private void AddHeader(StreamWriter outFile) {
 			outFile.Write("/*\n");
 			outFile.Write(" * Created at: " + DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm tt 'UTC'") + "\n");
-			outFile.Write(" * Machine: " + System.Environment.MachineName + "\n");
+			outFile.Write(" * Machine: " + Environment.MachineName + "\n");
 			outFile.Write(" */\n");
 		}
 

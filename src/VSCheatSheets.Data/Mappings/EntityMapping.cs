@@ -1,16 +1,24 @@
+#region Copyright notice
+// Copyright (c) 2011, Sergio Pereira, sergiopereira.com
+// 
+// The author doesn't speak legalese and doesn't want to even hear about it.
+// Anyone is free to use this code as they wish as long as they assume total responsibility of such use and any damages caused by it.
+// The author doesn't even care if you steal this code and never give proper attribution. 
+// 
+// THIS CODE WANTS TO BE FREE
+#endregion
 using System;
 using System.Linq.Expressions;
 using FluentNHibernate.Mapping;
+using FluentNHibernate.Utils.Reflection;
 using VSCheatSheets.Model;
 
 namespace VSCheatSheets.Data.Mappings {
 	
 	public abstract class EntityMapping<T> : ClassMap<T> where T : Entity {
-
-
 		protected EntityMapping()
 		{
-			//MapIdentity();
+			MapIdentity();
 			if (Audited)
 			{
 				//NOTE: I wish we could move the audit columns to the end of the table
@@ -19,7 +27,11 @@ namespace VSCheatSheets.Data.Mappings {
 				MapStandardAuditingProperties();
 			}
 			MapProperties();
-		} 
+		}
+
+		protected virtual void MapIdentity() {
+			Id(x => x.ID).GeneratedBy.Identity();//.Column(EntityType.Name + "ID");
+		}
 
 		public virtual bool Audited { get { return true; } }
 
@@ -35,7 +47,7 @@ namespace VSCheatSheets.Data.Mappings {
 
 		public ManyToOnePart<TOther> MapReference<TOther>(Expression<Func<T, TOther>> expression) {
 			return References(expression)
-				.Column(FluentNHibernate.Utils.Reflection.ReflectionHelper.GetAccessor(expression).Name + "ID")
+				.Column(ReflectionHelper.GetAccessor(expression).Name + "ID")
 				.ForeignKey();
 		}
 

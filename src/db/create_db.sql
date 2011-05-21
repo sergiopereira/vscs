@@ -1,18 +1,18 @@
 /*
- * Created at: 2011-05-09 02:50 AM UTC
+ * Created at: 2011-05-09 03:24 PM UTC
  * Machine: SERGIO-RED
  */
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_Sheet_User]') AND parent_object_id = OBJECT_ID('Sheets'))
-alter table Sheets  drop constraint FK_Sheet_User
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_EntityToCreatedBy]') AND parent_object_id = OBJECT_ID('Sheets'))
+alter table Sheets  drop constraint FK_EntityToCreatedBy
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_Sheet_CreatedBy]') AND parent_object_id = OBJECT_ID('Sheets'))
-alter table Sheets  drop constraint FK_Sheet_CreatedBy
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_EntityToUpdatedBy]') AND parent_object_id = OBJECT_ID('Sheets'))
+alter table Sheets  drop constraint FK_EntityToUpdatedBy
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_Sheet_UpdatedBy]') AND parent_object_id = OBJECT_ID('Sheets'))
-alter table Sheets  drop constraint FK_Sheet_UpdatedBy
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK69E598CE901178E1]') AND parent_object_id = OBJECT_ID('Sheets'))
+alter table Sheets  drop constraint FK69E598CE901178E1
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_SheetRating_User]') AND parent_object_id = OBJECT_ID('SheetRatings'))
@@ -47,17 +47,15 @@ alter table Users  drop constraint FK_User_UpdatedBy
 
     create table Sheets (
         ID BIGINT IDENTITY NOT NULL,
-       Name NVARCHAR(255) null,
-       Description NVARCHAR(255) null,
-       Private BIT null,
-       ContentMarkdown NVARCHAR(255) null,
-       Permalink NVARCHAR(255) null,
-       AverageRating INT null,
-       CreatedAtUtc DATETIME null,
-       UpdatedAtUtc DATETIME null,
+       CreatedAtUtc DATETIME not null,
+       UpdatedAtUtc DATETIME not null,
+       ContentMarkdown NVARCHAR(MAX) not null,
+       Name NVARCHAR(50) not null,
+       Description NVARCHAR(200) null,
+       Permalink NVARCHAR(60) not null,
+       CreatedByID BIGINT not null,
+       UpdatedByID BIGINT not null,
        UserID BIGINT null,
-       CreatedByUserID BIGINT null,
-       UpdatedByUserID BIGINT null,
        primary key (ID)
     )
 
@@ -95,18 +93,18 @@ alter table Users  drop constraint FK_User_UpdatedBy
     )
 
     alter table Sheets 
-        add constraint FK_Sheet_User 
+        add constraint FK_EntityToCreatedBy 
+        foreign key (CreatedByID) 
+        references Users
+
+    alter table Sheets 
+        add constraint FK_EntityToUpdatedBy 
+        foreign key (UpdatedByID) 
+        references Users
+
+    alter table Sheets 
+        add constraint FK69E598CE901178E1 
         foreign key (UserID) 
-        references Users
-
-    alter table Sheets 
-        add constraint FK_Sheet_CreatedBy 
-        foreign key (CreatedByUserID) 
-        references Users
-
-    alter table Sheets 
-        add constraint FK_Sheet_UpdatedBy 
-        foreign key (UpdatedByUserID) 
         references Users
 
     alter table SheetRatings 

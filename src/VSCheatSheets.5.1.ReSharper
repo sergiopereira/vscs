@@ -100,17 +100,13 @@
     <XML>
       <FormatSettings />
     </XML>
-    <FileHeader Region="Copyright notice"><![CDATA[Copyright (c) 2008, 629 Software LLC
+    <FileHeader Region="Copyright notice"><![CDATA[Copyright (c) 2011, Sergio Pereira, sergiopereira.com
 
-The use, disclosure, reproduction, modification, transfer, or
-transmittal of this work for any purpose in any form or by any
-means without the written permission of 629 Software is
-strictly prohibited.
+The author doesn't speak legalese and doesn't want to even hear about it.
+Anyone is free to use this code as they wish as long as they assume total responsibility of such use and any damages caused by it.
+The author doesn't even care if you steal this code and never give proper attribution. 
 
-Confidential, Unpublished Property of 629 Software.
-Use and distribution limited solely to authorized personnel.
-
-All Rights Reserved.
+THIS CODE WANTS TO BE FREE
 ]]></FileHeader>
     <GenerateMemberBody />
     <Naming2>

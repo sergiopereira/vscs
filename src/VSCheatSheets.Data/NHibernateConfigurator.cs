@@ -1,3 +1,12 @@
+#region Copyright notice
+// Copyright (c) 2011, Sergio Pereira, sergiopereira.com
+// 
+// The author doesn't speak legalese and doesn't want to even hear about it.
+// Anyone is free to use this code as they wish as long as they assume total responsibility of such use and any damages caused by it.
+// The author doesn't even care if you steal this code and never give proper attribution. 
+// 
+// THIS CODE WANTS TO BE FREE
+#endregion
 using System;
 using FluentNHibernate;
 using FluentNHibernate.Automapping;
@@ -21,16 +30,19 @@ namespace VSCheatSheets.Data {
 						.ConnectionString(x => x.FromConnectionStringWithKey("CheatSheets"))
 				)
 				.ProxyFactoryFactory<ProxyFactoryFactory>()
-				.Mappings(m => m.AutoMappings.Add(
-				          	AutoMap
-				          		.AssemblyOf<Entity>().Where(type => !type.IsAbstract && typeof(Entity).IsAssignableFrom(type))
-				          		.Conventions.AddFromAssemblyOf<NamingConvention>()
-				          		.Conventions.Add(
-				          			PrimaryKey.Name.Is(x => "ID"),
-				          			DefaultLazy.Always(),
-				          			ForeignKey.Format(FormatFkName) //naming for FK  columns							
-				          		)
-				          	))
+				.Mappings(m => {
+					m.FluentMappings.AddFromAssemblyOf<NHibernateConfigurator>();
+					m.AutoMappings.Add(
+						AutoMap
+							.AssemblyOf<Entity>().Where(type => !type.IsAbstract && typeof(Entity).IsAssignableFrom(type))
+							.Conventions.AddFromAssemblyOf<NamingConvention>()
+							.Conventions.Add(
+								PrimaryKey.Name.Is(x => "ID"),
+								DefaultLazy.Always(),
+								ForeignKey.Format(FormatFkName) //naming for FK  columns							
+							)
+						);
+				})
 				.ExposeConfiguration(config => config.Properties.Add("use_proxy_validator", "false"));
 
 			Configuration cfg = fluentConfig.BuildConfiguration();

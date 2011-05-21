@@ -46,7 +46,7 @@
     <Compile Include="Model\AccountStatus.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\Sheet.cs" />
-    <Compile Include="Model\SheetRating.cs" />
+    <Compile Include="Model\SheetReview.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
